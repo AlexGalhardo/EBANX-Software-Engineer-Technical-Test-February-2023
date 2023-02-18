@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import GetBalanceController from "./modules/account/getBalance/GetBalanceController";
-import PostEventController from "./modules/account/postEvent/PostEventController";
-import ResetStateController from "./modules/account/resetState/ResetStateController";
+import GetBalanceController from "./domain/account/getBalance/GetBalanceController";
+import PostEventController from "./domain/account/postEvent/PostEventController";
+import ResetStateController from "./domain/account/resetState/ResetStateController";
 
 export default Router()
     .post("/reset", ResetStateController.handle)

@@ -1,26 +1,44 @@
-import { IAccountRepository } from "../../../ports/IAccountRepository";
+import { IAccountsRepository } from "../../../ports/IAccountsRepository";
 
-interface IAccountDepositParams {
+interface IAccountDepositUseCaseParams {
     destination: string;
     amount: number;
 }
 
 export default class AccountDepositUseCase {
-    private readonly accountRepository: IAccountRepository;
+    private readonly accountsRepository: IAccountsRepository;
 
-    constructor(accountRepository: IAccountRepository) {
-        this.accountRepository = accountRepository;
+    constructor(accountsRepository: IAccountsRepository) {
+        this.accountsRepository = accountsRepository;
     }
 
-    async execute({ destination, amount }: IAccountDepositParams) {
-        const { httpStatusCodeResponse, message } = this.accountRepository.deposit(
-            destination,
-            amount,
-        );
+    async execute ({ destination, amount }: IAccountDepositUseCaseParams) {
+        const accountEntity = this.accountsRepository.getAccountEntity(destination);
 
-        return {
-            httpStatusCodeResponse,
-            message,
-        };
+        if (accountEntity) {
+            accountEntity.depositBalance(amount);
+            return {
+                success: true,
+                data: {
+                    destination: {
+                        id: destination,
+                        balance: accountEntity.getBalance,
+                    },
+                }
+            };
+        }
+        else {
+            this.accountsRepository.createNewAccount(destination, amount)
+
+            return {
+                success: true,
+                data: {
+                    destination: {
+                        id: newAccount.getId,
+                        balance: newAccount.getBalance,
+                    },
+                }
+            };
+        }
     }
 }

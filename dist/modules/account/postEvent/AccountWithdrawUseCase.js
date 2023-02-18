@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class AccountWithdrawUseCase {
-    constructor(accountRepository) {
-        this.accountRepository = accountRepository;
+    constructor(accountsRepository) {
+        this.accountsRepository = accountsRepository;
     }
-    async execute({ origin, amount }) {
-        const { httpStatusCodeResponse, message } = this.accountRepository.withdraw(origin, amount);
+    async execute ({ origin, amount }) {
+        const { httpStatusCodeResponse, message } = this.accountsRepository.withdraw(origin, amount);
         return {
             httpStatusCodeResponse,
             message,

@@ -1,18 +1,17 @@
 import { Request, Response } from "express";
 
-import { makeAccountRepository } from "../../../factories/makeAccountRepository";
+import { makeAccountsRepository } from "../../../factories/makeAccountsRepository";
+import { HttpStatusCode } from "../../../utils/HttpStatusCode";
 import AccountResetStateUseCase from "./AccountResetStateUseCase";
 
-class ResetStateController {
-    async handle(req: Request, res: Response) {
-        const resetStateUseCaseResponse = await new AccountResetStateUseCase(
-            makeAccountRepository(),
+export default class ResetStateController {
+    static async handle (_: Request, res: Response) {
+        const { success, message } = new AccountResetStateUseCase(
+            makeAccountsRepository(),
         ).execute();
 
         return res
-            .status(resetStateUseCaseResponse.httpStatusCodeResponse)
-            .send(resetStateUseCaseResponse.message);
+            .status(success ? HttpStatusCode.OK : HttpStatusCode.BAD_REQUEST)
+            .send(message);
     }
 }
-
-export default new ResetStateController();

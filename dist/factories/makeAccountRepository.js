@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.makeAccountRepository = void 0;
-const InMemoryDatabaseAccountRepository_1 = __importDefault(require("../repositories/InMemoryDatabaseAccountRepository"));
-const makeAccountRepository = () => {
-    return new InMemoryDatabaseAccountRepository_1.default();
+exports.makeAccountsRepository = void 0;
+const InMemoryDatabaseaccountsRepository_1 = __importDefault(require("../repositories/InMemoryDatabaseaccountsRepository"));
+const makeAccountsRepository = () => {
+    return new InMemoryDatabaseaccountsRepository_1.default();
 };
-exports.makeAccountRepository = makeAccountRepository;
+exports.makeAccountsRepository = makeAccountsRepository;

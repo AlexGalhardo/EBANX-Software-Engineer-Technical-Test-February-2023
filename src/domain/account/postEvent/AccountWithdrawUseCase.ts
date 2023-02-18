@@ -1,23 +1,35 @@
-import { IAccountRepository } from "../../../ports/IAccountRepository";
+import { IAccountsRepository } from "../../../ports/IAccountsRepository";
 
-interface IAccountWithdrawParams {
+interface IAccountWithdrawUseCaseParams {
     origin: string;
     amount: number;
 }
 
 export default class AccountWithdrawUseCase {
-    private readonly accountRepository: IAccountRepository;
+    private readonly accountsRepository: IAccountsRepository;
 
-    constructor(accountRepository: IAccountRepository) {
-        this.accountRepository = accountRepository;
+    constructor(accountsRepository: IAccountsRepository) {
+        this.accountsRepository = accountsRepository;
     }
 
-    async execute({ origin, amount }: IAccountWithdrawParams) {
-        const { httpStatusCodeResponse, message } = this.accountRepository.withdraw(origin, amount);
+    async execute ({ origin, amount }: IAccountWithdrawUseCaseParams) {
+        const accountEntity = this.accountsRepository.getAccountEntity(origin);
+
+        if (accountEntity?.withdrawBalance(amount)) {
+            return {
+                success: true,
+                data: {
+                    origin: {
+                        id: accountEntity?.getId,
+                        balance: accountEntity?.getBalance,
+                    },
+                }
+            };
+        }
 
         return {
-            httpStatusCodeResponse,
-            message,
+            success: false,
+            error: accountEntity ? `Not enough balance to withdraw ${amount}` : `Account Id: ${origin} not found`
         };
     }
 }

@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../shared/constants");
 const IN_MEMORY_ACCOUNTS_DATABASE = [];
-class InMemoryDatabaseAccountRepository {
-    resetStateBeforeStartingTests() {
+class InMemoryDatabaseaccountsRepository {
+    resetStateBeforeStartingTests () {
         IN_MEMORY_ACCOUNTS_DATABASE.length = 0;
         IN_MEMORY_ACCOUNTS_DATABASE.push({
             id: "300",
@@ -14,7 +14,7 @@ class InMemoryDatabaseAccountRepository {
             message: "OK",
         };
     }
-    getBalance(accountId) {
+    getBalance (accountId) {
         for (let i = 0; i < IN_MEMORY_ACCOUNTS_DATABASE.length; i++) {
             if (IN_MEMORY_ACCOUNTS_DATABASE[i].id === accountId) {
                 return {
@@ -28,7 +28,7 @@ class InMemoryDatabaseAccountRepository {
             message: 0,
         };
     }
-    deposit(destination, amount) {
+    deposit (destination, amount) {
         for (let i = 0; i < IN_MEMORY_ACCOUNTS_DATABASE.length; i++) {
             if (IN_MEMORY_ACCOUNTS_DATABASE[i].id === destination) {
                 IN_MEMORY_ACCOUNTS_DATABASE[i].balance += amount;
@@ -57,7 +57,7 @@ class InMemoryDatabaseAccountRepository {
             },
         };
     }
-    withdraw(origin, amount) {
+    withdraw (origin, amount) {
         for (let i = 0; i < IN_MEMORY_ACCOUNTS_DATABASE.length; i++) {
             if (IN_MEMORY_ACCOUNTS_DATABASE[i].id === origin) {
                 IN_MEMORY_ACCOUNTS_DATABASE[i].balance -= amount;
@@ -77,7 +77,7 @@ class InMemoryDatabaseAccountRepository {
             message: 0,
         };
     }
-    transfer(origin, amount, destination) {
+    transfer (origin, amount, destination) {
         const indexOfAccountOrigin = IN_MEMORY_ACCOUNTS_DATABASE.findIndex((account) => account.id === origin);
         const indexOfAccountDestination = IN_MEMORY_ACCOUNTS_DATABASE.findIndex((account) => account.id === destination);
         if (indexOfAccountOrigin >= 0 && indexOfAccountDestination >= 0) {
@@ -103,4 +103,4 @@ class InMemoryDatabaseAccountRepository {
         };
     }
 }
-exports.default = InMemoryDatabaseAccountRepository;
+exports.default = InMemoryDatabaseaccountsRepository;

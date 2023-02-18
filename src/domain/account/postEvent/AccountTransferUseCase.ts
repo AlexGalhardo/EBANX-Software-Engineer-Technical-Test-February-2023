@@ -1,28 +1,43 @@
-import { IAccountRepository } from "../../../ports/IAccountRepository";
+import { IAccountsRepository } from "../../../ports/IAccountsRepository";
 
-interface IAccountTransferParams {
+interface IAccountTransferUseCaseParams {
     origin: string;
     amount: number;
     destination: string;
 }
 
 export default class AccountTransferUseCase {
-    private readonly accountRepository: IAccountRepository;
+    private readonly accountsRepository: IAccountsRepository;
 
-    constructor(accountRepository: IAccountRepository) {
-        this.accountRepository = accountRepository;
+    constructor(accountsRepository: IAccountsRepository) {
+        this.accountsRepository = accountsRepository;
     }
 
-    async execute({ origin, amount, destination }: IAccountTransferParams) {
-        const { httpStatusCodeResponse, message } = this.accountRepository.transfer(
-            origin,
-            amount,
-            destination,
-        );
+    async execute ({ origin, amount, destination }: IAccountTransferUseCaseParams) {
+        const { accountEntityOrigin, AccountEntityDestination } = this.accountsRepository.getAccountsEntities(origin, destination)
+
+        if (accountEntityOrigin?.withdrawBalance(amount)) {
+
+            AccountEntityDestination?.depositBalance(amount);
+
+            return {
+                success: true,
+                data: {
+                    origin: {
+                        id: accountEntityOrigin?.getId,
+                        balance: accountEntityOrigin?.getBalance,
+                    },
+                    destination: {
+                        id: AccountEntityDestination?.getId,
+                        balance: AccountEntityDestination?.getBalance,
+                    },
+                },
+            };
+        }
 
         return {
-            httpStatusCodeResponse,
-            message,
+            success: false,
+            data: 0,
         };
     }
 }

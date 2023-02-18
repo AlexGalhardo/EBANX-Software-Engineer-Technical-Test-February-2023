@@ -1,22 +1,26 @@
-import { IAccountRepository } from "../../../ports/IAccountRepository";
-
-interface IAccountGetBalanceParams {
-    account_id: string;
-}
+import { IAccountsRepository } from "../../../ports/IAccountsRepository";
 
 export default class AccountGetBalanceUseCase {
-    private readonly accountRepository: IAccountRepository;
+    private readonly accountsRepository: IAccountsRepository;
 
-    constructor(accountRepository: IAccountRepository) {
-        this.accountRepository = accountRepository;
+    constructor(accountsRepository: IAccountsRepository) {
+        this.accountsRepository = accountsRepository;
     }
 
-    async execute({ account_id }: IAccountGetBalanceParams) {
-        const { httpStatusCodeResponse, message } = this.accountRepository.getBalance(account_id);
+    async execute (accountId: string) {
+        const accountEntity = this.accountsRepository.getAccountEntity(accountId);
+
+        if (accountEntity) {
+            return {
+                success: true,
+                data: accountEntity.getBalance
+            }
+        }
 
         return {
-            httpStatusCodeResponse,
-            message,
+            success: false,
+            error: `Account Id: ${accountId} not found`,
+            data: 0
         };
     }
 }

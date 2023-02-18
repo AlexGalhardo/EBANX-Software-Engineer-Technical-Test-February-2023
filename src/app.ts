@@ -10,14 +10,10 @@ app.use(express.json())
     .use(routes)
     .use((error: Error, _: Request, response: Response) => {
         if (error instanceof Error) {
-            return response.status(HttpStatusCode.BAD_REQUEST).json({
+            return response.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
                 message: error.message,
             });
         }
-        return response.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
-            status: "error",
-            message: "Internal Server Error",
-        });
     });
 
 export default app;

@@ -5,6 +5,7 @@
 - GitHub: https://github.com/AlexGalhardo
 - Linkedin: https://www.linkedin.com/in/alexgalhardo/
 - Blog: https://galhardo-blog.vercel.app
+- Source Code: https://github.com/AlexGalhardo/EBANX-Software-Engineer-Technical-Test-February-2023
 
 ## Tools Used
 - Typescript
@@ -87,7 +88,7 @@
 - [x] Done
 
 ### Publish it to internet
-- [x] API URL:
+- [x] API URL: https://galhardo-ebanx-software-engineer-technical-test-february-2023.vercel.app/
 
 ### Test API
 - [x] All tests passing at https://ipkiss.pragmazero.com/
@@ -115,4 +116,10 @@
 ## How to test HTTP Requests with Insomnia HTTP Client
 - Download Insomnia Http Requests Client in: https://insomnia.rest/download
 - Import file: `INSOMNIA-HTTP-REQUESTS-EBANX-ALEX-GALHARDO` into your Insomnia
+
 ## Some Prints
+
+![ebanx - print passando](https://user-images.githubusercontent.com/19540357/219883114-79042ef9-5843-4c21-a817-f6fc28f487aa.png)
+![ebanx - print insomnia 1](https://user-images.githubusercontent.com/19540357/219883115-b03cb7c1-3636-4e84-8a5a-209e0920ad40.png)
+
+https://user-images.githubusercontent.com/19540357/219883116-10adc85d-558a-4407-8f3b-f9f5a3cc4e53.mp4

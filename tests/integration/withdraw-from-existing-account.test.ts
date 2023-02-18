@@ -1,10 +1,10 @@
 import request from "supertest";
 
 import app from "../../src/app";
-import { HTTP_STATUS_CODE_CREATED } from "../../src/shared/constants";
+import { HttpStatusCode } from "../../src/utils/HttpStatusCode";
 
 describe("testing withdraw from existing account", () => {
-    it("it should return http status code HTTP_STATUS_CODE_CREATED with correct json response", async () => {
+    it("it should return http status code 201 with correct json response", async () => {
         await request(app)
             .post("/event")
             .send({
@@ -32,7 +32,7 @@ describe("testing withdraw from existing account", () => {
             },
         };
 
-        expect(response.statusCode).toBe(HTTP_STATUS_CODE_CREATED);
+        expect(response.statusCode).toBe(HttpStatusCode.CREATED);
         expect(JSON.stringify(response.body)).toEqual(JSON.stringify(responseBodyToBe));
     });
 });

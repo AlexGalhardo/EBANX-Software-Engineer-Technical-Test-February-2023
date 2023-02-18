@@ -4,7 +4,7 @@
 - Email: aleexgvieira@gmail.com
 - GitHub: https://github.com/AlexGalhardo
 - Linkedin: https://www.linkedin.com/in/alexgalhardo/
-- Blog: https://galhard-blog.vercel.app
+- Blog: https://galhardo-blog.vercel.app
 
 ## Tools Used
 - Typescript
@@ -87,7 +87,7 @@
 - [x] Done
 
 ### Publish it to internet
-- [ ] API URL:
+- [x] API URL:
 
 ### Test API
 - [x] All tests passing at https://ipkiss.pragmazero.com/
@@ -95,20 +95,22 @@
 ### Send Source Code
 - [x] Send to: https://app3.greenhouse.io/tests/648ff8d3b48e2ca30ca33a27ec1b0ff4?utm_medium=email&utm_source=TakeHomeTest
 
-## How to run this project locally
+## Installation && Local Setup
 - Have sure to have NodeJS v16+ and NPM v8+ installed locally in your machine
 - Install dependencies:
-    - `$ npm install`
-- To start API Server Typescript Development:
-    - `$ npm run dev`
+    - $ `npm install`
+- To start Typescript API Server in vevelopment:
+    - $ `npm run dev`
+- To fix and format using ESLint/Prettier:
+    - $ `npm run precommit`
 - To build this project to Deploy:
-    - `$ npm run build`
-- To start API server with JavaScript:
-    - `$ npm start`
+    - $ `npm run build`
+- To start API server in Production:
+    - $ `npm start`
 - To run tests:
-    - `$ npm test`
+    - $ `npm test`
 - To watch tests while develop/refactor:
-    - `$ npm run test:watch`
+    - $ `npm run test:watch`
 
 ## How to test HTTP Requests with Insomnia HTTP Client
 - Download Insomnia Http Requests Client in: https://insomnia.rest/download

@@ -6,17 +6,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
 const routes_1 = __importDefault(require("./routes"));
-const constants_1 = require("./shared/constants");
+const HttpStatusCode_1 = require("./utils/HttpStatusCode");
 const app = (0, express_1.default)();
 app.use(express_1.default.json())
     .use(routes_1.default)
-    .use((error, request, response) => {
+    .use((error, _, response) => {
     if (error instanceof Error) {
-        return response.status(constants_1.HTTP_STATUS_CODE_BAD_REQUEST).json({
+        return response.status(HttpStatusCode_1.HttpStatusCode.BAD_REQUEST).json({
             message: error.message,
         });
     }
-    return response.status(constants_1.HTTP_STATUS_CODE_INTERNAL_SERVER_ERROR).json({
+    return response.status(HttpStatusCode_1.HttpStatusCode.INTERNAL_SERVER_ERROR).json({
         status: "error",
         message: "Internal Server Error",
     });

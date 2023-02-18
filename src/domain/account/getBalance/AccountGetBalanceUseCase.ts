@@ -7,20 +7,20 @@ export default class AccountGetBalanceUseCase {
         this.accountsRepository = accountsRepository;
     }
 
-    async execute (accountId: string) {
+    async execute(accountId: string) {
         const accountEntity = this.accountsRepository.getAccountEntity(accountId);
 
         if (accountEntity) {
             return {
                 success: true,
-                data: accountEntity.getBalance
-            }
+                data: accountEntity.getBalance,
+            };
         }
 
         return {
             success: false,
             error: `Account Id: ${accountId} not found`,
-            data: 0
+            data: 0,
         };
     }
 }

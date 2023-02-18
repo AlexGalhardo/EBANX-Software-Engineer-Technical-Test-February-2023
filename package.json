@@ -1,8 +1,10 @@
 {
-    "name": "ebanx-softwareenginer-technical-test",
+    "name": "alex-galhardo-ebanx-softwareenginer-technical-test-february-2023",
     "version": "1.0.0",
-    "description": "technical test for the ebanx software engineer selection process",
-    "main": "src/server.ts",
+    "description": "Alex Galhardo EBANX Software Engineer Technical Test February 2023",
+    "main": "dist/server.js",
+    "author": "Alex Galhardo <aleexgvieira@gmail.com>",
+    "license": "MIT",
     "scripts": {
         "start": "node dist/server.js",
         "dev": "ts-node-dev --exit-child --transpile-only --ignore-watch node_modules src/server.ts",
@@ -14,12 +16,6 @@
         "fix:lint": "npx eslint . --fix",
         "precommit": "npm run fix:prettier && npm run fix:lint"
     },
-    "keywords": [
-        "typescript",
-        "api"
-    ],
-    "author": "Alex Galhardo <aleexgvieira@gmail.com>",
-    "license": "MIT",
     "dependencies": {
         "dotenv": "^16.0.1",
         "express": "^4.18.1",

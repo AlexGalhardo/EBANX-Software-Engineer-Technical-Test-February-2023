@@ -23,13 +23,16 @@ export default class AccountWithdrawUseCase {
                         id: accountEntity?.getId,
                         balance: accountEntity?.getBalance,
                     },
-                }
+                },
             };
         }
 
         return {
             success: false,
-            error: accountEntity ? `Not enough balance to withdraw ${amount}` : `Account Id: ${origin} not found`
+            error: accountEntity
+                ? `Not enough balance to withdraw ${amount}`
+                : `Account Id: ${origin} not found`,
+            data: 0
         };
     }
 }

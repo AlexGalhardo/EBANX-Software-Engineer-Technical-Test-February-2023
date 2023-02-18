@@ -12,12 +12,12 @@ import AccountTransferUseCase from "./AccountTransferUseCase";
 import AccountWithdrawUseCase from "./AccountWithdrawUseCase";
 
 export default class PostEventController {
-    static async handle (req: Request, res: Response) {
+    static async handle(req: Request, res: Response) {
         const { type, origin, amount, destination } = req.body;
 
         let postEventResponse: {
             success: boolean;
-            data?: 0 | IDepositDataResponse | IWithdrawDataResponse | ITransferDataResponse;
+            data?: number | IDepositDataResponse | IWithdrawDataResponse | ITransferDataResponse;
         };
 
         if (type === "deposit") {

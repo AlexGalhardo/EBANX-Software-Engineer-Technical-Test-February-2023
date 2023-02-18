@@ -12,8 +12,8 @@ export default class AccountDepositUseCase {
         this.accountsRepository = accountsRepository;
     }
 
-    async execute ({ destination, amount }: IAccountDepositUseCaseParams) {
-        const accountEntity = this.accountsRepository.getAccountEntity(destination);
+    async execute({ destination, amount }: IAccountDepositUseCaseParams) {
+        let accountEntity = this.accountsRepository.getAccountEntity(destination);
 
         if (accountEntity) {
             accountEntity.depositBalance(amount);
@@ -24,21 +24,18 @@ export default class AccountDepositUseCase {
                         id: destination,
                         balance: accountEntity.getBalance,
                     },
-                }
+                },
             };
         }
-        else {
-            this.accountsRepository.createNewAccount(destination, amount)
-
-            return {
-                success: true,
-                data: {
-                    destination: {
-                        id: newAccount.getId,
-                        balance: newAccount.getBalance,
-                    },
-                }
-            };
-        }
+        accountEntity = this.accountsRepository.createNewAccount(destination, amount);
+        return {
+            success: true,
+            data: {
+                destination: {
+                    id: accountEntity.getId,
+                    balance: accountEntity.getBalance,
+                },
+            },
+        };
     }
 }

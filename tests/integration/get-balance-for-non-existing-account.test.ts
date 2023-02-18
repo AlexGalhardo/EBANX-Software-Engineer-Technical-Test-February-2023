@@ -1,7 +1,7 @@
 import request from "supertest";
 
 import app from "../../src/app";
-import { HTTP_STATUS_CODE_NOT_FOUND } from "../../src/shared/constants";
+import { HttpStatusCode } from "../../src/utils/HttpStatusCode";
 
 describe("testing get balance for non existing account", () => {
     it("it should return http status code HTTP_STATUS_CODE_NOT_FOUND with 0 message", async () => {
@@ -17,7 +17,7 @@ describe("testing get balance for non existing account", () => {
 
         const response = await request(app).get("/balance?account_id=1234");
 
-        expect(response.statusCode).toBe(HTTP_STATUS_CODE_NOT_FOUND);
+        expect(response.statusCode).toBe(HttpStatusCode.NOT_FOUND);
         expect(response.body).toEqual(0);
     });
 });

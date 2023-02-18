@@ -14,29 +14,37 @@ export default class AccountTransferUseCase {
     }
 
     async execute ({ origin, amount, destination }: IAccountTransferUseCaseParams) {
-        const { accountEntityOrigin, AccountEntityDestination } = this.accountsRepository.getAccountsEntities(origin, destination)
+        const { accountEntityOrigin, accountEntityDestination } =
+            this.accountsRepository.getAccountsEntities(origin, destination);
+
+        let error = null;
+
+        if (!accountEntityOrigin) error = `Account origin id ${origin} not found`;
+        if (!accountEntityDestination) error = `Account destination id ${destination} not found`;
 
         if (accountEntityOrigin?.withdrawBalance(amount)) {
-
-            AccountEntityDestination?.depositBalance(amount);
-
-            return {
-                success: true,
-                data: {
-                    origin: {
-                        id: accountEntityOrigin?.getId,
-                        balance: accountEntityOrigin?.getBalance,
+            if (accountEntityDestination?.depositBalance(amount)) {
+                return {
+                    success: true,
+                    data: {
+                        origin: {
+                            id: accountEntityOrigin.getId,
+                            balance: accountEntityOrigin.getBalance,
+                        },
+                        destination: {
+                            id: accountEntityDestination.getId,
+                            balance: accountEntityDestination.getBalance,
+                        },
                     },
-                    destination: {
-                        id: AccountEntityDestination?.getId,
-                        balance: AccountEntityDestination?.getBalance,
-                    },
-                },
-            };
+                };
+            }
+        } else {
+            error = `Ǹot enough balance to transfer ${amount} from account id origin ${origin}`;
         }
 
         return {
             success: false,
+            error,
             data: 0,
         };
     }

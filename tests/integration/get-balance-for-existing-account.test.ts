@@ -1,7 +1,7 @@
 import request from "supertest";
 
 import app from "../../src/app";
-import { HTTP_STATUS_CODE_OK } from "../../src/shared/constants";
+import { HttpStatusCode } from "../../src/utils/HttpStatusCode";
 
 describe("testing get balance for existing account", () => {
     it("it should return http status code HTTP_STATUS_CODE_OK with text 20 message", async () => {
@@ -17,7 +17,7 @@ describe("testing get balance for existing account", () => {
 
         const response = await request(app).get("/balance?account_id=100");
 
-        expect(response.statusCode).toBe(HTTP_STATUS_CODE_OK);
+        expect(response.statusCode).toBe(HttpStatusCode.OK);
         expect(response.body).toBe(20);
     });
 });

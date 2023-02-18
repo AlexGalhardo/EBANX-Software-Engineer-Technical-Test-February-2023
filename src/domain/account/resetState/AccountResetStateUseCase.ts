@@ -1,8 +1,8 @@
 import { IAccountsRepository } from "../../../ports/IAccountsRepository";
 
 interface IAccountResetStateUseCaseResponse {
-    success: boolean
-    message: string | undefined
+    success: boolean;
+    message: string | undefined;
 }
 export default class AccountResetStateUseCase {
     private readonly accountsRepository: IAccountsRepository;
@@ -11,7 +11,7 @@ export default class AccountResetStateUseCase {
         this.accountsRepository = accountsRepository;
     }
 
-    execute (): IAccountResetStateUseCaseResponse {
+    execute(): IAccountResetStateUseCaseResponse {
         const { success, message } = this.accountsRepository.resetState();
         return { success, message };
     }

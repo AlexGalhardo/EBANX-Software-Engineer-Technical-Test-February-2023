@@ -1,7 +1,7 @@
 import request from "supertest";
 
 import app from "../../src/app";
-import { HTTP_STATUS_CODE_CREATED } from "../../src/shared/constants";
+import { HttpStatusCode } from "../../src/utils/HttpStatusCode";
 
 describe("testing deposit into existing account", () => {
     it("it should return http status code HTTP_STATUS_CODE_CREATED with the correct json response", async () => {
@@ -22,7 +22,7 @@ describe("testing deposit into existing account", () => {
             },
         };
 
-        expect(response.statusCode).toBe(HTTP_STATUS_CODE_CREATED);
+        expect(response.statusCode).toBe(HttpStatusCode.CREATED);
         expect(JSON.stringify(response.body)).toBe(JSON.stringify(responseBodyToBe));
     });
 });

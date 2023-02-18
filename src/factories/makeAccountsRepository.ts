@@ -4,9 +4,9 @@ import InMemoryDatabaseAccountsRepository from "../repositories/InMemoryDatabase
 export const makeAccountsRepository = (): IAccountsRepository => {
     return new InMemoryDatabaseAccountsRepository();
 
-    // se eu fosse mudar para usar um banco postgres de repository, por exemplo
+    // Se for necessário mudar para um repository Postgres por exemplo
     // return new PostgresAccountsRepository();
 
-    // se eu fosse mudar para usar um banco mongodb de repository, por exemplo
+    // Se for necessário mudar para um repository MongoDB por exemplo
     // return new MongoDBAccountsRepository();
 };

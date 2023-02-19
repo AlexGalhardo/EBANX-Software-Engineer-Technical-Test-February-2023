@@ -40,7 +40,7 @@
 
 ## Software Architecture
 - I used some Clean Architecture principles
-- My main reference about this topic is the book "Arquitetura Lima na Prática" from Otavio Lemos: https://www.otaviolemos.com.br/
+- My main reference about this topic is the book "Arquitetura Limpa na Prática" from Otavio Lemos: https://www.otaviolemos.com.br/
 ## Instructions
 ### Reset state before starting tests
 - POST /reset
